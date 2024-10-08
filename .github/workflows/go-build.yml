@@ -1,0 +1,43 @@
+name: Go Build
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.20
+
+      - name: Install dependencies
+        run: go mod tidy
+
+      - name: Build the Go app
+        run: go build -v ./...
+
+      - name: Run the Go app
+        run: go run main.go
+
+      - name: Conditional message based on branch
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "Running on the main branch!"
+          elif [[ "${{ github.ref }}" == "refs/heads/dev" ]]; then
+            echo "Running on the dev branch!"
+          elif [[ "${{ github.ref }}" == "refs/heads/feature" ]]; then
+            echo "Running on the feature branch!"
+          else
+            echo "Running on another branch!"
+        shell: bash
