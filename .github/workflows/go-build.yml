@@ -42,4 +42,6 @@ jobs:
             echo "Running on the feature branch!"
           else
             echo "Running on another branch!"
+          fi  # Adiciona o fechamento 'fi'
         shell: bash
+
