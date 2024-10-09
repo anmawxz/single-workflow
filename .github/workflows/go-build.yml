@@ -34,7 +34,7 @@ jobs:
         run: |
           if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
             echo "Running on the main branch!"
-          elif [[ "${{ github.ref }}" == "refs/heads/dev" ]]; then
+          elif [[ "${{ github.ref }}" == "refs/heads/develop" ]]; then
             echo "Running on the dev branch!"
           elif [[ "${{ github.ref }}" == "refs/heads/feature" ]]; then
             echo "Running on the feature branch!"
