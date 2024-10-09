@@ -1,14 +1,7 @@
-name: Go Build
+name: Reusable Go Build Workflow
 
 on:
-  push:
-    branches:
-      - 'main'
-      - 'develop'
-      - 'feature/*'
-  pull_request:
-    branches:
-      - '**'
+  workflow_call:  # Isso permite que este workflow seja chamado por outros workflows
 
 jobs:
   build:
@@ -42,6 +35,5 @@ jobs:
             echo "Running on the feature branch!"
           else
             echo "Running on another branch!"
-          fi  # Adiciona o fechamento 'fi'
+          fi
         shell: bash
-
