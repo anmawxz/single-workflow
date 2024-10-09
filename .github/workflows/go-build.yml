@@ -1,19 +1,44 @@
-name: Use Reusable Workflow
+name: Reusable Go Build Workflow
 
 on:
-  push:
-    branches:
-      - main
-      - dev
-      - feature
-  pull_request:
-    branches:
-      - main
-      - dev
-      - feature
+  workflow_call:
+    inputs:
+      go-version:
+        description: 'The version of Go to use'
+        required: true
+        type: string 
+        default: '1.20' 
 
 jobs:
-  call-reusable-workflow:
-    uses: anmawxz/single-workflow/.github/workflows/go-build.yml@main 
-    with:
-      go-version: '1.20'
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ inputs.go-version }}
+
+      - name: Install dependencies
+        run: go mod tidy
+
+      - name: Build the Go app
+        run: go build -v ./...
+
+      - name: Run the Go app
+        run: go run main.go
+
+      - name: Conditional message based on branch
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "Running on the main branch!"
+          elif [[ "${{ github.ref }}" == "refs/heads/dev" ]]; then
+            echo "Running on the dev branch!"
+          elif [[ "${{ github.ref }}" == "refs/heads/feature" ]]; then
+            echo "Running on the feature branch!"
+          else
+            echo "Running on another branch!"
+          fi
+        shell: bash
