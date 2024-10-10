@@ -2,15 +2,9 @@ name: Use Reusable Workflow
 
 on:
   push:
-    branches:
-      - main
-      - develop
-      - feature
-  pull_request:
-    branches:
-      - main
-      - develop
-      - feature
+    branches-ignore:
+      - 'main'
+      
   workflow_run:
     workflows: ["go-build.yml"]
     types:
