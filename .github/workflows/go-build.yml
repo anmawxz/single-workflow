@@ -5,6 +5,11 @@ on:
     branches-ignore:
       - 'main'
 
+  workflow_run:
+    workflows: ["Reusable Go Build Workflow"]
+    types:
+      - completed 
+
 jobs:
   call-reusable-workflow:
     uses: anmawxz/single-workflow/.github/workflows/go-build.yml@main 
