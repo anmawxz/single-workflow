@@ -11,6 +11,10 @@ on:
       - main
       - develop
       - feature
+  workflow_run:
+    workflows: ["Reusable Go Build Workflow"]
+    types:
+      - completed 
 
 jobs:
   call-reusable-workflow:
