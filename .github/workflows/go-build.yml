@@ -1,6 +1,11 @@
 name: Reusable Go Build Workflow
 
 on:
+  push:
+    branches:
+      - main
+      - develop
+      - feature
   workflow_call:
     inputs:
       go-version:
