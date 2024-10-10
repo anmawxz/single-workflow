@@ -35,6 +35,9 @@ jobs:
       - name: Run the Go app
         run: go run main.go
 
+      - name: Run the Go app
+        run: echo "Hey"
+
       - name: Conditional message based on branch
         run: |
           if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
