@@ -6,18 +6,14 @@ on:
       - main
       - develop
       - feature
-  pull_request:
-    branches:
-      - main
-      - develop
-      - feature
+
   workflow_run:
     workflows: ["Reusable Go Build Workflow"]
     types:
-      - completed 
+      - completed
 
 jobs:
   call-reusable-workflow:
-    uses: anmawxz/single-workflow/.github/workflows/go-build.yml@main 
+    uses: anmawxz/single-workflow/.github/workflows/go-build.yml@main
     with:
       go-version: '1.20'
