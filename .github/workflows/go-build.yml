@@ -1,6 +1,7 @@
 name: Use Reusable Workflow Dev
 
 on:
+
   workflow_run:
     workflows: ["Reusable Go Build Workflow"]
     types:
