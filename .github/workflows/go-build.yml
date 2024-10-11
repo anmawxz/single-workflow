@@ -1,12 +1,6 @@
 name: Use Reusable Workflow Dev
 
 on:
-  push:
-    branches:
-      - main
-      - develop
-      - feature
-
   workflow_run:
     workflows: ["Reusable Go Build Workflow"]
     types:
